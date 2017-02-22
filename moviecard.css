@@ -1,0 +1,16 @@
+#card {
+	background-size:cover;
+	display:inline-block;
+	height:224.8px;
+	position:aboslute;
+	width:400px;
+}
+#card > p {
+	background-color:rgba(0,0,0,0.6);
+	color:#fff;
+	font-size:16px;
+	letter-spacing:1px;
+	margin:195px 0 0 0;
+	padding:1%;
+	text-align:center;
+}

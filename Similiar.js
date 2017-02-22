@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import 'whatwg-fetch';
 import './similiar.css';
+import 'whatwg-fetch';
 
 var list = [];
 

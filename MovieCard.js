@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './recentcard.css';
+import './moviecard.css';
 
 export default class RecentCard extends Component {
 	handleClick = () => {

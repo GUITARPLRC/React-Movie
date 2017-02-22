@@ -10,7 +10,7 @@ export default class MovieList extends Component {
 		}
 	}
 
-	moveLeft() {
+	moveLeft = () => {
 		const list = document.getElementById(this.state.el);
 		var val = (parseInt(list.style.left, 10) || 0 ) + 300;
 		if (parseInt(list.style.left, 10) >= 0) {
@@ -20,14 +20,12 @@ export default class MovieList extends Component {
 		}
 	}
 
-	moveRight() {
+	moveRight = () => {
 		const list = document.getElementById(this.state.el);
 		var val = (parseInt(list.style.left, 10) || 0) - 300;
 		if (parseInt(list.style.left, 10) <= -6500) {
 			return
 		} else {
-			var leftButton = document.getElementById(this.state.el+'leftButton');
-			leftButton.disabled = false;
 			list.style.left = val +'px';
 		}
 	}
