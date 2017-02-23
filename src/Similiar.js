@@ -18,7 +18,7 @@ export default class Similiar extends Component {
 		'/similar?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&page=1';
 		fetch(url)
 		.then( (response) => response.json())
-		.then( (data) =>  this.setState({'similiarList': data.results}))
+		.then( (data) =>  this.setState({'similiarList': data.results.slice(0,6)}))
 
 		const imagePath = 'https://image.tmdb.org/t/p/w500/';
 		// only get first 6 similar movies
