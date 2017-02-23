@@ -12,7 +12,8 @@ export default class Search extends Component {
 			moviedetails: null,
 			ratings: "",
 			inputText: "",
-			searchResults: []
+			searchResults: [],
+			list: []
 		}
 	}
 
@@ -26,10 +27,15 @@ export default class Search extends Component {
 				.then( (myArray) => {
 					for (let i = 0; i < 5; i++) {
 						let result = {title:myArray[i].title, year:myArray[i].release_date.slice(0,4)};
-						this.setState({searchResults: this.state.searchResults.concat(result)});
-						this.setState({searchResults: this.state.searchResults.slice(-5)});
+						this.setState({searchResults: this.state.searchResults.concat(result).slice(-5)});
 					}
 				})
+				.then( this.state.searchResults.map( (each) => {
+					this.setState({list: this.state.list.concat(<option key={each.id} value={each.title}></option>).slice(0,5)})
+					return true
+				}) )
+			} else {
+				this.setState({list: []});
 			}
 	}
 
@@ -56,6 +62,7 @@ export default class Search extends Component {
 										})
 			)
 		this.setState({inputText: ""});
+		this.setState({list: []});
 }
 
 	render() {
@@ -63,8 +70,11 @@ export default class Search extends Component {
 			<div id="search">
 				<form id="searchForm" onSubmit={this.handleSubmit}>
 					<input value={this.state.inputText} id="searchInput" ref="searchInput"
-						 placeholder='Enter Movie Title Here' onChange={this.updateInput}/>
+						 placeholder='Enter Movie Title Here' onChange={this.updateInput} list="titles" />
 					<button onClick={this.props.onclick} id="searchButton">Search</button>
+					<datalist id="titles">
+	 				 {this.state.list}
+	 			 	</datalist>
 				</form>
 				{this.state.moviedetails &&
 					<DetailsCard movieId={this.state.movieId} poster={this.state.moviedetails.poster_path} title={this.state.moviedetails.title}
